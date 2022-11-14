@@ -4,6 +4,7 @@
 *.iml
 *.hprof
 *.log
+*.wav
 korge.keystore
 local.properties
 src/main/*
