@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:10a4484bd6d7994ae735a8a5ab9720f9:2f50fa16d6b3eeb48a4aa8b0dc9e3af2:1e5afa1cf7985ccbfb65138c87a9fd42$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="vhs_fuzz_sheet.png" width="1650" height="1239">
+    <sprite n="vhs_fuzz_1.png" x="0" y="0" w="550" h="413"/>
+    <sprite n="vhs_fuzz_2.png" x="550" y="0" w="550" h="413"/>
+    <sprite n="vhs_fuzz_3.png" x="1100" y="0" w="550" h="413"/>
+    <sprite n="vhs_fuzz_4.png" x="0" y="413" w="550" h="413"/>
+    <sprite n="vhs_fuzz_5.png" x="550" y="413" w="550" h="413"/>
+    <sprite n="vhs_fuzz_6.png" x="1100" y="413" w="550" h="413"/>
+    <sprite n="vhs_fuzz_7.png" x="0" y="826" w="550" h="413"/>
+    <sprite n="vhs_fuzz_8.png" x="550" y="826" w="550" h="413"/>
+</TextureAtlas>
