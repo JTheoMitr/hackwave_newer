@@ -93,6 +93,7 @@ class Scene2() : Scene() {
 
         var chipSwitch = true
         var numberOneSwitch = true
+        var numberTwoSwitch = true
         var enemySwitch = true
         var levelIsActive = false
 
@@ -361,7 +362,7 @@ class Scene2() : Scene() {
 
         var fallingValueOne = (0..29).random()
 
-        var fallingValueTwo = (0..29).random()
+        var fallingValueTwo = (0..20).random()
 
         var fallingValueThree = (0..29).random()
 
@@ -537,6 +538,13 @@ class Scene2() : Scene() {
         fun currentNumberUpdate() {
             if (numberOneSwitch) {
                 currentNumberValue += fallingValueOne
+            }
+            currentNumber.text = currentNumberValue.toString()
+        }
+
+        fun currentNumberUpdateTwo() {
+            if (numberTwoSwitch) {
+                currentNumberValue -= fallingValueTwo
             }
             currentNumber.text = currentNumberValue.toString()
         }
@@ -1260,9 +1268,9 @@ class Scene2() : Scene() {
                 numberClusterTwo.forEach {
                     //  if (!it.visible || it.pos.y > height) {
                     delay((Random.nextInt(1, 2)).seconds)
-                    fallingValueOne = (0..29).random()
-                    it.text = fallingValueOne.toString()
-                    numberOneSwitch = true
+                    fallingValueTwo = (0..29).random()
+                    it.text = fallingValueTwo.toString()
+                    numberTwoSwitch = true
                     val canX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
                     it.visible = true
                     it.position(canX, -5.0)
@@ -1270,8 +1278,8 @@ class Scene2() : Scene() {
                     it.addUpdater {
                         if (neonTarget.collidesWith(this)) {
                             this.visible = false
-                            currentNumberUpdate()
-                            numberOneSwitch = false
+                            currentNumberUpdateTwo()
+                            numberTwoSwitch = false
 
                         }
                     }
@@ -1653,7 +1661,7 @@ class Scene2() : Scene() {
                         energyBall.tween(energyBall::rotation[minDegrees], time = 4.seconds, easing = Easing.EASE_IN_OUT)
                         energyBall.tween(energyBall::rotation[maxDegrees], time = 3.seconds, easing = Easing.EASE_IN_OUT) },
                     async { enemyWaveTwo() },
-                    async { enemyWaveThree() },
+                    // async { enemyWaveThree() },
                     async {
                         neonTarget.tween(neonTarget::rotation[minDegrees], time = 4.seconds, easing = Easing.EASE_IN_OUT)
                         neonTarget.tween(neonTarget::rotation[maxDegrees], time = 3.seconds, easing = Easing.EASE_IN_OUT) }
