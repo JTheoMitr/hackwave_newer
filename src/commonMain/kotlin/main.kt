@@ -94,6 +94,7 @@ class Scene2() : Scene() {
         var chipSwitch = true
         var numberOneSwitch = true
         var numberTwoSwitch = true
+        var numberThreeSwitch = true
         var enemySwitch = true
         var levelIsActive = false
 
@@ -362,9 +363,9 @@ class Scene2() : Scene() {
 
         var fallingValueOne = (0..29).random()
 
-        var fallingValueTwo = (0..20).random()
+        var fallingValueTwo = (0..10).random()
 
-        var fallingValueThree = (0..29).random()
+        var fallingValueThree = (11..25).random()
 
         val numberCluster = Array<Text>(1) {
 
@@ -549,6 +550,13 @@ class Scene2() : Scene() {
             currentNumber.text = currentNumberValue.toString()
         }
 
+        fun currentNumberUpdateThree() {
+            if (numberThreeSwitch) {
+                currentNumberValue -= fallingValueThree
+            }
+            currentNumber.text = currentNumberValue.toString()
+        }
+
         fun enemyHit() {
             if (enemySwitch) {
                 enemyHits += 1
@@ -585,7 +593,7 @@ class Scene2() : Scene() {
                 // Red Triangle Group 1
                 redTriangleGroupOne.forEach {
 
-                    delay((Random.nextInt(1, 2)).seconds)
+                    delay((Random.nextInt(3, 5)).seconds)
                     val triangleX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
                     enemySwitch = true
                     it.visible = true
@@ -735,7 +743,7 @@ class Scene2() : Scene() {
                 // Red Triangle Group 4
                 redTriangleGroupFour.forEach {
                     // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(1, 2)).seconds)
+                    delay((Random.nextInt(3, 6)).seconds)
                     val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
                     enemySwitch = true
                     it.visible = true
@@ -833,7 +841,7 @@ class Scene2() : Scene() {
                 // Red Skull Group 2
                 redSkullGroupTwo.forEach {
                     // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(1, 2)).seconds)
+                    delay((Random.nextInt(3, 5)).seconds)
                     val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
                     enemySwitch = true
                     it.visible = true
@@ -881,7 +889,7 @@ class Scene2() : Scene() {
                 // Chip Cluster
                 chipCluster.forEach {
                     //  if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(1, 2)).seconds)
+                    delay((Random.nextInt(2, 4)).seconds)
                     chipSwitch = true
                     val canX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
                     it.visible = true
@@ -909,7 +917,7 @@ class Scene2() : Scene() {
                 // Number
                 numberCluster.forEach {
                     //  if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(1, 2)).seconds)
+                    delay((Random.nextInt(2, 4)).seconds)
                     fallingValueOne = (0..29).random()
                     it.text = fallingValueOne.toString()
                     numberOneSwitch = true
@@ -943,7 +951,7 @@ class Scene2() : Scene() {
                 // Red Triangle Group 5
                 redTriangleGroupFive.forEach {
                     // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(1, 2)).seconds)
+                    delay((Random.nextInt(3, 5)).seconds)
                     val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
                     enemySwitch = true
                     it.visible = true
@@ -980,20 +988,20 @@ class Scene2() : Scene() {
 
                     }
 
-                    it.moveTo(jellyX + 75, 700.0, 3.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 75, 700.0, 2.seconds, Easing.EASE_IN)
                     it.tween(it::rotation[maxDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
                     it.moveTo(jellyX + 3, height - 25, 3.seconds, Easing.EASE_IN)
                     it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
                     it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
 
-                    // 8 Seconds
+                    // 7 Seconds
 
                 }
             }, async {
                 // Red Triangle Group 2
                 redTriangleGroupSix.forEach {
                     // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(1, 2)).seconds)
+                    delay((Random.nextInt(4, 6)).seconds)
                     val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
                     enemySwitch = true
                     it.visible = true
@@ -1030,20 +1038,20 @@ class Scene2() : Scene() {
 
                     }
 
-                    it.moveTo(jellyX + 75, 400.0, 4.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 75, 400.0, 2.seconds, Easing.EASE_IN)
                     it.tween(it::rotation[maxDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 3, height - 73, 4.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 3, height - 73, 3.seconds, Easing.EASE_IN)
                     it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
                     it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
 
-                    // 10 Seconds
+                    // 7 Seconds
 
                 }
             }, async {
                 // Red Triangle Group 3
                 redTriangleGroupSeven.forEach {
                     // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(1, 2)).seconds)
+                    delay((Random.nextInt(5, 7)).seconds)
                     val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
                     enemySwitch = true
                     it.visible = true
@@ -1080,20 +1088,20 @@ class Scene2() : Scene() {
 
                     }
 
-                    it.moveTo(jellyX + 75, 300.0, 3.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 75, 300.0, 2.seconds, Easing.EASE_IN)
                     it.tween(it::rotation[maxDegrees], time = 1.seconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 3, height - buffer, 3.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 3, height - buffer, 2.seconds, Easing.EASE_IN)
                     it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
                     it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
 
-                    // 8.5 Seconds
+                    // 6.5 Seconds
 
                 }
             }, async {
                 // Red Triangle Group 4
                 redTriangleGroupEight.forEach {
                     // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(1, 2)).seconds)
+                    delay((Random.nextInt(4, 7)).seconds)
                     val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
                     enemySwitch = true
                     it.visible = true
@@ -1130,20 +1138,20 @@ class Scene2() : Scene() {
 
                     }
 
-                    it.moveTo(jellyX + 75, 400.0, 3.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 75, 400.0, 2.seconds, Easing.EASE_IN)
                     it.tween(it::rotation[maxDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
                     it.moveTo(jellyX + 3, height - buffer, 3.seconds, Easing.EASE_IN)
                     it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
                     it.moveTo(jellyX + 30, height + buffer, 2.seconds, Easing.EASE_IN)
 
-                    // 9 Seconds
+                    // 8 Seconds
 
                 }
             }, async {
                 // Red Skull Group 1
                 redSkullGroupThree.forEach {
                     // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(1, 2)).seconds)
+                    delay((Random.nextInt(5, 6)).seconds)
                     val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
                     enemySwitch = true
                     it.visible = true
@@ -1180,18 +1188,18 @@ class Scene2() : Scene() {
 
                     }
 
-                    it.moveTo(jellyX + 75, 400.0, 3.seconds, Easing.EASE_IN)
-                    it.moveTo(jellyX + 3, height - 73, 3.seconds, Easing.EASE_IN)
-                    it.moveTo(jellyX + 30, height + buffer, 3.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 75, 400.0, 2.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 3, height - 73, 1.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 30, height + buffer, 2.seconds, Easing.EASE_IN)
 
-                    // 9 Seconds
+                    // 5 Seconds
 
                 }
             }, async {
                 // Red Skull Group 2
                 redSkullGroupFour.forEach {
                     // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(1, 2)).seconds)
+                    delay((Random.nextInt(4, 7)).seconds)
                     val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
                     enemySwitch = true
                     it.visible = true
@@ -1239,7 +1247,7 @@ class Scene2() : Scene() {
                 // Chip Cluster
                 chipClusterTwo.forEach {
                     //  if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(1, 2)).seconds)
+                    delay((Random.nextInt(3, 6)).seconds)
                     chipSwitch = true
                     val canX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
                     it.visible = true
@@ -1256,18 +1264,18 @@ class Scene2() : Scene() {
                         }
                     }
 
-                    awaitAll(async {it.tween(it::rotation[270.degrees], time = 3.seconds, easing = Easing.EASE_IN_OUT)},
-                        async{it.moveTo(canX, height + buffer, 6.seconds, Easing.EASE_IN)})
+                    awaitAll(async {it.tween(it::rotation[270.degrees], time = 2.seconds, easing = Easing.EASE_IN_OUT)},
+                        async{it.moveTo(canX, height + buffer, 5.seconds, Easing.EASE_IN)})
 
 
-                    // 9 Seconds
+                    // 7 Seconds
 
                 }
             }, async {
                 // Number
                 numberClusterTwo.forEach {
                     //  if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(1, 2)).seconds)
+                    delay((Random.nextInt(4, 6)).seconds)
                     fallingValueTwo = (0..29).random()
                     it.text = fallingValueTwo.toString()
                     numberTwoSwitch = true
@@ -1284,10 +1292,10 @@ class Scene2() : Scene() {
                         }
                     }
 
-                    awaitAll(async{it.moveTo(canX, height + buffer, 9.seconds, Easing.EASE_IN)})
+                    awaitAll(async{it.moveTo(canX, height + buffer, 8.seconds, Easing.EASE_IN)})
 
 
-                    // 9 Seconds
+                    // 8 Seconds
 
                 }
 
@@ -1301,7 +1309,7 @@ class Scene2() : Scene() {
                 // Red Triangle Group 5
                 redTriangleGroupNine.forEach {
                     // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(1, 2)).seconds)
+                    delay((Random.nextInt(5, 8)).seconds)
                     val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
                     enemySwitch = true
                     it.visible = true
@@ -1338,20 +1346,20 @@ class Scene2() : Scene() {
 
                     }
 
-                    it.moveTo(jellyX + 75, 700.0, 5.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 75, 700.0, 3.seconds, Easing.EASE_IN)
                     it.tween(it::rotation[maxDegrees], time = 1.seconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 3, height - 25, 3.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 3, height - 25, 1.seconds, Easing.EASE_IN)
                     it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 30, height + buffer, 2.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
 
-                    // 11.5 Seconds
+                    // 6.5 Seconds
 
                 }
             }, async {
                 // Red Triangle Group 2
                 redTriangleGroupTen.forEach {
                     // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(1, 2)).seconds)
+                    delay((Random.nextInt(7, 9)).seconds)
                     val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
                     enemySwitch = true
                     it.visible = true
@@ -1388,20 +1396,20 @@ class Scene2() : Scene() {
 
                     }
 
-                    it.moveTo(jellyX + 75, 400.0, 7.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 75, 400.0, 3.seconds, Easing.EASE_IN)
                     it.tween(it::rotation[maxDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 3, height - 73, 4.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 3, height - 73, 2.seconds, Easing.EASE_IN)
                     it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
                     it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
 
-                    // 13 Seconds
+                    // 7 Seconds
 
                 }
             }, async {
                 // Red Triangle Group 3
                 redTriangleGroupEleven.forEach {
                     // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(1, 2)).seconds)
+                    delay((Random.nextInt(8, 9)).seconds)
                     val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
                     enemySwitch = true
                     it.visible = true
@@ -1438,20 +1446,20 @@ class Scene2() : Scene() {
 
                     }
 
-                    it.moveTo(jellyX + 75, 300.0, 5.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 75, 300.0, 3.seconds, Easing.EASE_IN)
                     it.tween(it::rotation[maxDegrees], time = 1.seconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 3, height - buffer, 4.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 3, height - buffer, 1.seconds, Easing.EASE_IN)
                     it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
                     it.moveTo(jellyX + 30, height + buffer, 2.seconds, Easing.EASE_IN)
 
-                    // 12.5 Seconds
+                    // 7.5 Seconds
 
                 }
             }, async {
                 // Red Triangle Group 4
                 redTriangleGroupTwelve.forEach {
                     // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(1, 2)).seconds)
+                    delay((Random.nextInt(5, 7)).seconds)
                     val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
                     enemySwitch = true
                     it.visible = true
@@ -1488,20 +1496,20 @@ class Scene2() : Scene() {
 
                     }
 
-                    it.moveTo(jellyX + 75, 400.0, 5.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 75, 400.0, 3.seconds, Easing.EASE_IN)
                     it.tween(it::rotation[maxDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 3, height - buffer, 4.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 3, height - buffer, 2.seconds, Easing.EASE_IN)
                     it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 30, height + buffer, 2.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
 
-                    // 12 Seconds
+                    // 7 Seconds
 
                 }
             }, async {
                 // Red Skull Group 1
                 redSkullGroupFive.forEach {
                     // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(1, 2)).seconds)
+                    delay((Random.nextInt(7, 8)).seconds)
                     val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
                     enemySwitch = true
                     it.visible = true
@@ -1538,18 +1546,18 @@ class Scene2() : Scene() {
 
                     }
 
-                    it.moveTo(jellyX + 75, 400.0, 5.seconds, Easing.EASE_IN)
-                    it.moveTo(jellyX + 3, height - 73, 5.seconds, Easing.EASE_IN)
-                    it.moveTo(jellyX + 30, height + buffer, 3.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 75, 400.0, 3.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 3, height - 73, 2.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
 
-                    // 13 Seconds
+                    // 6 Seconds
 
                 }
             }, async {
                 // Red Skull Group 2
                 redSkullGroupSix.forEach {
                     // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(1, 2)).seconds)
+                    delay((Random.nextInt(5, 9)).seconds)
                     val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
                     enemySwitch = true
                     it.visible = true
@@ -1586,18 +1594,18 @@ class Scene2() : Scene() {
 
                     }
 
-                    it.moveTo(jellyX + 75, 400.0, 4.seconds, Easing.EASE_IN)
-                    it.moveTo(jellyX + 3, height - 73, 5.seconds, Easing.EASE_IN)
-                    it.moveTo(jellyX + 30, height + buffer, 3.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 75, 400.0, 2.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 3, height - 73, 3.seconds, Easing.EASE_IN)
+                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
 
-                    // 12 Seconds
+                    // 6 Seconds
 
                 }
             }, async {
                 // Chip Cluster
                 chipClusterThree.forEach {
                     //  if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(1, 2)).seconds)
+                    delay((Random.nextInt(6, 8)).seconds)
                     chipSwitch = true
                     val canX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
                     it.visible = true
@@ -1625,10 +1633,10 @@ class Scene2() : Scene() {
                 // Number
                 numberClusterThree.forEach {
                     //  if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(1, 2)).seconds)
-                    fallingValueOne = (0..29).random()
-                    it.text = fallingValueOne.toString()
-                    numberOneSwitch = true
+                    delay((Random.nextInt(7, 9)).seconds)
+                    fallingValueThree = (0..29).random()
+                    it.text = fallingValueThree.toString()
+                    numberThreeSwitch = true
                     val canX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
                     it.visible = true
                     it.position(canX, -5.0)
@@ -1636,13 +1644,13 @@ class Scene2() : Scene() {
                     it.addUpdater {
                         if (neonTarget.collidesWith(this)) {
                             this.visible = false
-                            currentNumberUpdate()
-                            numberOneSwitch = false
+                            currentNumberUpdateThree()
+                            numberThreeSwitch = false
 
                         }
                     }
 
-                    awaitAll(async{it.moveTo(canX, height + buffer, 12.seconds, Easing.EASE_IN)})
+                    awaitAll(async{it.moveTo(canX, height + buffer, 7.seconds, Easing.EASE_IN)})
 
 
                     // 12 Seconds
@@ -1652,22 +1660,42 @@ class Scene2() : Scene() {
             })
         }
 
+        // make enemy wave 4, 5, and 6 for jellytimertwo
+        // add a "hack incomplete; incoming wave" message at end of each wave
+
         suspend fun jellyTimer() {
             while (levelIsActive) {
                 awaitAll(
-
                     async { enemyWaveOne() },
                     async {
-                        energyBall.tween(energyBall::rotation[minDegrees], time = 4.seconds, easing = Easing.EASE_IN_OUT)
-                        energyBall.tween(energyBall::rotation[maxDegrees], time = 3.seconds, easing = Easing.EASE_IN_OUT) },
+                        energyBall.tween(energyBall::rotation[minDegrees], time = 7.seconds, easing = Easing.EASE_IN_OUT)
+                        energyBall.tween(energyBall::rotation[maxDegrees], time = 6.seconds, easing = Easing.EASE_IN_OUT) },
                     async { enemyWaveTwo() },
-                    // async { enemyWaveThree() },
+                    async { enemyWaveThree() },
                     async {
-                        neonTarget.tween(neonTarget::rotation[minDegrees], time = 4.seconds, easing = Easing.EASE_IN_OUT)
-                        neonTarget.tween(neonTarget::rotation[maxDegrees], time = 3.seconds, easing = Easing.EASE_IN_OUT) }
+                        neonTarget.tween(neonTarget::rotation[minDegrees], time = 6.seconds, easing = Easing.EASE_IN_OUT)
+                        neonTarget.tween(neonTarget::rotation[maxDegrees], time = 7.seconds, easing = Easing.EASE_IN_OUT) }
                 )
             }
         }
+
+        suspend fun jellyTimerTwo() {
+            while (levelIsActive) {
+                awaitAll(
+                    async { enemyWaveOne() },
+                    async {
+                        energyBall.tween(energyBall::rotation[minDegrees], time = 7.seconds, easing = Easing.EASE_IN_OUT)
+                        energyBall.tween(energyBall::rotation[maxDegrees], time = 6.seconds, easing = Easing.EASE_IN_OUT) },
+                    async { enemyWaveTwo() },
+                    async { enemyWaveThree() },
+                    async {
+                        neonTarget.tween(neonTarget::rotation[minDegrees], time = 6.seconds, easing = Easing.EASE_IN_OUT)
+                        neonTarget.tween(neonTarget::rotation[maxDegrees], time = 7.seconds, easing = Easing.EASE_IN_OUT) }
+                )
+            }
+        }
+
+        // create new vars for jellyTimerTwo and use new timings (in notes) but also change DELAYS not just movement times
 
 
         // INPUTS
@@ -1701,6 +1729,7 @@ class Scene2() : Scene() {
             levelIsActive = true
             println(levelIsActive.equals(true))
             jellyTimer()
+            // jellyTimerTwo()
         }
     }
 }
