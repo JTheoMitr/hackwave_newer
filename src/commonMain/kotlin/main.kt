@@ -566,8 +566,8 @@ class Scene2() : Scene() {
 
         // Establish Music
 
-//        val music = resourcesVfs["eric_track_1.wav"].readMusic()
-//        music.play()
+        val music = resourcesVfs["eric_track_1.wav"].readMusic()
+        music.play()
 
         // Energy ball
         val energyBall = image(resourcesVfs["red_button_one.png"].readBitmap()) {
@@ -683,6 +683,7 @@ class Scene2() : Scene() {
             println("number switch is set to $numberSwitch")
         }
 
+        // comment out all waves except for One and test the this.visible logic before implementing in rest of methods
         suspend fun enemyWaveOne() {
 
             println("Enemy Wave 1")
@@ -692,37 +693,39 @@ class Scene2() : Scene() {
 
                     delay((Random.nextInt(3, 5)).seconds)
                     val triangleX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
+                    // enemySwitch = true
                     it.visible = true
                     it.position(triangleX, -5.0)
 
                     it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
+                        // add the if 'this' is visible logic here (first try adding it in place of enemySwitch in parentheses)
+                        // which means you can probably remove the enemySwitch variable and usage altogether, visibility will act as the 'switch'
+                        if (this.visible) {
+                            if (neonTarget.collidesWith(this)) {
 
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
+                                var collisionPosX = neonTarget.x - 60
+                                var collisionPosY = neonTarget.y - 70
+                                explosion.xy(collisionPosX, collisionPosY)
+                                println(collisionPosY)
+                                enemyHit()
+                                // enemySwitch = false
 
-                            explosion.visible = true
-                            this.visible = false
+                                explosion.visible = true
+                                this.visible = false
 
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
+                                explosion.playAnimationForDuration(2.seconds)
+                                explosion.onAnimationCompleted { explosion.visible = false }
 
-                            println("enemy hits $enemyHits")
-                        }
+                                println("enemy hits $enemyHits")
+                            } else if (laserOne.collidesWith(this)) {
+                                this.visible = false
+                                // enemySwitch = false
+                                explosion.xy(this.x - 50, this.y - 50)
+                                explosion.visible = true
+                                explosion.playAnimationForDuration(2.seconds)
+                                explosion.onAnimationCompleted { explosion.visible = false }
 
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
+                            }
                         }
 
                     }
@@ -742,37 +745,37 @@ class Scene2() : Scene() {
                     // if (!it.visible || it.pos.y > height) {
                     delay((Random.nextInt(1, 2)).seconds)
                     val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
+                    // enemySwitch = true
                     it.visible = true
                     it.position(jellyX, -5.0)
 
                     it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
+                        if (this.visible) {
+                            if (neonTarget.collidesWith(this)) {
 
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
+                                var collisionPosX = neonTarget.x - 60
+                                var collisionPosY = neonTarget.y - 70
+                                explosion.xy(collisionPosX, collisionPosY)
+                                println(collisionPosY)
+                                enemyHit()
+                                // enemySwitch = false
 
-                            explosion.visible = true
-                            this.visible = false
+                                explosion.visible = true
+                                this.visible = false
 
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
+                                explosion.playAnimationForDuration(2.seconds)
+                                explosion.onAnimationCompleted { explosion.visible = false }
 
-                            println("enemy hits $enemyHits")
-                        }
+                                println("enemy hits $enemyHits")
+                            } else if (laserOne.collidesWith(this)) {
+                                this.visible = false
+                                // enemySwitch = false
+                                explosion.xy(this.x - 50, this.y - 50)
+                                explosion.visible = true
+                                explosion.playAnimationForDuration(2.seconds)
+                                explosion.onAnimationCompleted { explosion.visible = false }
 
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
+                            }
                         }
 
                     }
@@ -792,36 +795,37 @@ class Scene2() : Scene() {
                     // if (!it.visible || it.pos.y > height) {
                     delay((Random.nextInt(1, 2)).seconds)
                     val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
+                    // enemySwitch = true
                     it.visible = true
                     it.position(jellyX, -5.0)
 
                     it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
+                        if (this.visible) {
+                            if (neonTarget.collidesWith(this)) {
 
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
+                                var collisionPosX = neonTarget.x - 60
+                                var collisionPosY = neonTarget.y - 70
+                                explosion.xy(collisionPosX, collisionPosY)
+                                println(collisionPosY)
+                                enemyHit()
+                                // enemySwitch = false
 
-                            explosion.visible = true
-                            this.visible = false
+                                explosion.visible = true
+                                this.visible = false
 
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
+                                explosion.playAnimationForDuration(2.seconds)
+                                explosion.onAnimationCompleted { explosion.visible = false }
 
-                            println("enemy hits $enemyHits")
-                        }
+                                println("enemy hits $enemyHits")
+                            } else if (laserOne.collidesWith(this)) {
+                                this.visible = false
+                                // enemySwitch = false
+                                explosion.xy(this.x - 50, this.y - 50)
+                                explosion.visible = true
+                                explosion.playAnimationForDuration(2.seconds)
+                                explosion.onAnimationCompleted { explosion.visible = false }
 
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
+                            }
 
                         }
 
@@ -842,37 +846,37 @@ class Scene2() : Scene() {
                     // if (!it.visible || it.pos.y > height) {
                     delay((Random.nextInt(3, 6)).seconds)
                     val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
+                    // enemySwitch = true
                     it.visible = true
                     it.position(jellyX, -5.0)
 
                     it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
+                        if (this.visible) {
+                            if (neonTarget.collidesWith(this)) {
 
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
+                                var collisionPosX = neonTarget.x - 60
+                                var collisionPosY = neonTarget.y - 70
+                                explosion.xy(collisionPosX, collisionPosY)
+                                println(collisionPosY)
+                                enemyHit()
+                                // enemySwitch = false
 
-                            explosion.visible = true
-                            this.visible = false
+                                explosion.visible = true
+                                this.visible = false
 
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
+                                explosion.playAnimationForDuration(2.seconds)
+                                explosion.onAnimationCompleted { explosion.visible = false }
 
-                            println("enemy hits $enemyHits")
-                        }
+                                println("enemy hits $enemyHits")
+                            } else if (laserOne.collidesWith(this)) {
+                                this.visible = false
+                                // enemySwitch = false
+                                explosion.xy(this.x - 50, this.y - 50)
+                                explosion.visible = true
+                                explosion.playAnimationForDuration(2.seconds)
+                                explosion.onAnimationCompleted { explosion.visible = false }
 
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
+                            }
                         }
 
                     }
@@ -892,37 +896,37 @@ class Scene2() : Scene() {
                     // if (!it.visible || it.pos.y > height) {
                     delay((Random.nextInt(1, 2)).seconds)
                     val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
+                    // enemySwitch = true
                     it.visible = true
                     it.position(jellyX, -5.0)
 
                     it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
+                        if (this.visible) {
+                            if (neonTarget.collidesWith(this)) {
 
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
+                                var collisionPosX = neonTarget.x - 60
+                                var collisionPosY = neonTarget.y - 70
+                                explosion.xy(collisionPosX, collisionPosY)
+                                println(collisionPosY)
+                                enemyHit()
+                                // enemySwitch = false
 
-                            explosion.visible = true
-                            this.visible = false
+                                explosion.visible = true
+                                this.visible = false
 
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
+                                explosion.playAnimationForDuration(2.seconds)
+                                explosion.onAnimationCompleted { explosion.visible = false }
 
-                            println("enemy hits $enemyHits")
-                        }
+                                println("enemy hits $enemyHits")
+                            } else if (laserOne.collidesWith(this)) {
+                                this.visible = false
+                                // enemySwitch = false
+                                explosion.xy(this.x - 50, this.y - 50)
+                                explosion.visible = true
+                                explosion.playAnimationForDuration(2.seconds)
+                                explosion.onAnimationCompleted { explosion.visible = false }
 
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
+                            }
                         }
 
                     }
@@ -940,37 +944,37 @@ class Scene2() : Scene() {
                     // if (!it.visible || it.pos.y > height) {
                     delay((Random.nextInt(3, 5)).seconds)
                     val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
+                    // enemySwitch = true
                     it.visible = true
                     it.position(jellyX, -5.0)
 
                     it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
+                        if (this.visible) {
+                            if (neonTarget.collidesWith(this)) {
 
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
+                                var collisionPosX = neonTarget.x - 60
+                                var collisionPosY = neonTarget.y - 70
+                                explosion.xy(collisionPosX, collisionPosY)
+                                println(collisionPosY)
+                                enemyHit()
+                                enemySwitch = false
 
-                            explosion.visible = true
-                            this.visible = false
+                                explosion.visible = true
+                                this.visible = false
 
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
+                                explosion.playAnimationForDuration(2.seconds)
+                                explosion.onAnimationCompleted { explosion.visible = false }
 
-                            println("enemy hits $enemyHits")
-                        }
+                                println("enemy hits $enemyHits")
+                            } else if (laserOne.collidesWith(this)) {
+                                this.visible = false
+                                // enemySwitch = false
+                                explosion.xy(this.x - 50, this.y - 50)
+                                explosion.visible = true
+                                explosion.playAnimationForDuration(2.seconds)
+                                explosion.onAnimationCompleted { explosion.visible = false }
 
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
+                            }
                         }
 
                     }
@@ -1041,1079 +1045,1079 @@ class Scene2() : Scene() {
             })
         }
 
-        suspend fun enemyWaveTwo() {
-
-            println("DATA RUNNING")
-            awaitAll(async {
-                // Red Triangle Group 5
-                redTriangleGroupFive.forEach {
-                    // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(3, 5)).seconds)
-                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
-                    it.visible = true
-                    it.position(jellyX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
-
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
-
-                            explosion.visible = true
-                            this.visible = false
-
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                            println("enemy hits $enemyHits")
-                        }
-
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                        }
-
-                    }
-
-                    it.moveTo(jellyX + 75, 700.0, 2.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[maxDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 3, height - 25, 3.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
-
-                    // 7 Seconds
-
-                }
-            }, async {
-                // Red Triangle Group 2
-                redTriangleGroupSix.forEach {
-                    // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(4, 6)).seconds)
-                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
-                    it.visible = true
-                    it.position(jellyX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
-
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
-
-                            explosion.visible = true
-                            this.visible = false
-
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                            println("enemy hits $enemyHits")
-                        }
-
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                        }
-
-                    }
-
-                    it.moveTo(jellyX + 75, 400.0, 2.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[maxDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 3, height - 73, 3.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
-
-                    // 7 Seconds
-
-                }
-            }, async {
-                // Red Triangle Group 3
-                redTriangleGroupSeven.forEach {
-                    // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(5, 7)).seconds)
-                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
-                    it.visible = true
-                    it.position(jellyX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
-
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
-
-                            explosion.visible = true
-                            this.visible = false
-
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                            println("enemy hits $enemyHits")
-                        }
-
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                        }
-
-                    }
-
-                    it.moveTo(jellyX + 75, 300.0, 2.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[maxDegrees], time = 1.seconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 3, height - buffer, 2.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
-
-                    // 6.5 Seconds
-
-                }
-            }, async {
-                // Red Triangle Group 4
-                redTriangleGroupEight.forEach {
-                    // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(4, 7)).seconds)
-                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
-                    it.visible = true
-                    it.position(jellyX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
-
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
-
-                            explosion.visible = true
-                            this.visible = false
-
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                            println("enemy hits $enemyHits")
-                        }
-
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                        }
-
-                    }
-
-                    it.moveTo(jellyX + 75, 400.0, 2.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[maxDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 3, height - buffer, 3.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 30, height + buffer, 2.seconds, Easing.EASE_IN)
-
-                    // 8 Seconds
-
-                }
-            }, async {
-                // Red Skull Group 1
-                redSkullGroupThree.forEach {
-                    // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(5, 6)).seconds)
-                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
-                    it.visible = true
-                    it.position(jellyX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
-
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
-
-                            explosion.visible = true
-                            this.visible = false
-
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                            println("enemy hits $enemyHits")
-                        }
-
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                        }
-
-                    }
-
-                    it.moveTo(jellyX + 75, 400.0, 2.seconds, Easing.EASE_IN)
-                    it.moveTo(jellyX + 3, height - 73, 1.seconds, Easing.EASE_IN)
-                    it.moveTo(jellyX + 30, height + buffer, 2.seconds, Easing.EASE_IN)
-
-                    // 5 Seconds
-
-                }
-            }, async {
-                // Red Skull Group 2
-                redSkullGroupFour.forEach {
-                    // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(4, 7)).seconds)
-                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
-                    it.visible = true
-                    it.position(jellyX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
-
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
-
-                            explosion.visible = true
-                            this.visible = false
-
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                            println("enemy hits $enemyHits")
-                        }
-
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                        }
-
-                    }
-
-                    it.moveTo(jellyX + 75, 400.0, 3.seconds, Easing.EASE_IN)
-                    it.moveTo(jellyX + 3, height - 73, 2.seconds, Easing.EASE_IN)
-                    it.moveTo(jellyX + 30, height + buffer, 3.seconds, Easing.EASE_IN)
-
-                    // 8 Seconds
-
-                }
-            }, async {
-                // Chip Cluster
-                chipClusterTwo.forEach {
-                    //  if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(3, 6)).seconds)
-                    chipSwitch = true
-                    val canX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    it.visible = true
-                    it.position(canX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this)) {
-                            this.visible = false
-                            chipSwitchHit()
-                            chipSwitch = false
-
-                            // colorDefault = AnsiEscape.Color.RED
-                            println("chip pick-ups: $chipPickUps")
-                        }
-                    }
-
-                    awaitAll(async {it.tween(it::rotation[270.degrees], time = 2.seconds, easing = Easing.EASE_IN_OUT)},
-                        async{it.moveTo(canX, height + buffer, 5.seconds, Easing.EASE_IN)})
-
-
-                    // 7 Seconds
-
-                }
-            }, async {
-                // Number
-                numberClusterTwo.forEach {
-                    //  if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(4, 6)).seconds)
-                    fallingValueTwo = (0..29).random()
-                    it.text = fallingValueTwo.toString()
-                    numberTwoSwitch = true
-                    val canX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    it.visible = true
-                    it.position(canX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this)) {
-                            this.visible = false
-                            currentNumberUpdateTwo()
-                            numberTwoSwitch = false
-
-                        }
-                    }
-
-                    awaitAll(async{it.moveTo(canX, height + buffer, 8.seconds, Easing.EASE_IN)})
-
-
-                    // 8 Seconds
-
-                }
-
-            })
-        }
-
-        suspend fun enemyWaveThree() {
-
-            println("DATA RUNNING")
-            awaitAll(async {
-                // Red Triangle Group 5
-                redTriangleGroupNine.forEach {
-                    // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(5, 8)).seconds)
-                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
-                    it.visible = true
-                    it.position(jellyX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
-
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
-
-                            explosion.visible = true
-                            this.visible = false
-
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                            println("enemy hits $enemyHits")
-                        }
-
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                        }
-
-                    }
-
-                    it.moveTo(jellyX + 75, 700.0, 3.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[maxDegrees], time = 1.seconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 3, height - 25, 1.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
-
-                    // 6.5 Seconds
-
-                }
-            }, async {
-                // Red Triangle Group 2
-                redTriangleGroupTen.forEach {
-                    // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(7, 9)).seconds)
-                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
-                    it.visible = true
-                    it.position(jellyX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
-
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
-
-                            explosion.visible = true
-                            this.visible = false
-
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                            println("enemy hits $enemyHits")
-                        }
-
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                        }
-
-                    }
-
-                    it.moveTo(jellyX + 75, 400.0, 3.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[maxDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 3, height - 73, 2.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
-
-                    // 7 Seconds
-
-                }
-            }, async {
-                // Red Triangle Group 3
-                redTriangleGroupEleven.forEach {
-                    // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(8, 9)).seconds)
-                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
-                    it.visible = true
-                    it.position(jellyX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
-
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
-
-                            explosion.visible = true
-                            this.visible = false
-
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                            println("enemy hits $enemyHits")
-                        }
-
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                        }
-
-                    }
-
-                    it.moveTo(jellyX + 75, 300.0, 3.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[maxDegrees], time = 1.seconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 3, height - buffer, 1.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 30, height + buffer, 2.seconds, Easing.EASE_IN)
-
-                    // 7.5 Seconds
-
-                }
-            }, async {
-                // Red Triangle Group 4
-                redTriangleGroupTwelve.forEach {
-                    // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(5, 7)).seconds)
-                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
-                    it.visible = true
-                    it.position(jellyX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
-
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
-
-                            explosion.visible = true
-                            this.visible = false
-
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                            println("enemy hits $enemyHits")
-                        }
-
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                        }
-
-                    }
-
-                    it.moveTo(jellyX + 75, 400.0, 3.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[maxDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 3, height - buffer, 2.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
-
-                    // 7 Seconds
-
-                }
-            }, async {
-                // Red Skull Group 1
-                redSkullGroupFive.forEach {
-                    // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(7, 8)).seconds)
-                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
-                    it.visible = true
-                    it.position(jellyX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
-
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
-
-                            explosion.visible = true
-                            this.visible = false
-
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                            println("enemy hits $enemyHits")
-                        }
-
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                        }
-
-                    }
-
-                    it.moveTo(jellyX + 75, 400.0, 3.seconds, Easing.EASE_IN)
-                    it.moveTo(jellyX + 3, height - 73, 2.seconds, Easing.EASE_IN)
-                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
-
-                    // 6 Seconds
-
-                }
-            }, async {
-                // Red Skull Group 2
-                redSkullGroupSix.forEach {
-                    // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(5, 9)).seconds)
-                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
-                    it.visible = true
-                    it.position(jellyX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
-
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
-
-                            explosion.visible = true
-                            this.visible = false
-
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                            println("enemy hits $enemyHits")
-                        }
-
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                        }
-
-                    }
-
-                    it.moveTo(jellyX + 75, 400.0, 2.seconds, Easing.EASE_IN)
-                    it.moveTo(jellyX + 3, height - 73, 3.seconds, Easing.EASE_IN)
-                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
-
-                    // 6 Seconds
-
-                }
-            }, async {
-                // Chip Cluster
-                chipClusterThree.forEach {
-                    //  if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(6, 8)).seconds)
-                    chipSwitch = true
-                    val canX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    it.visible = true
-                    it.position(canX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this)) {
-                            this.visible = false
-                            chipSwitchHit()
-                            chipSwitch = false
-
-                            // colorDefault = AnsiEscape.Color.RED
-                            println("chip pick-ups: $chipPickUps")
-                        }
-                    }
-
-                    awaitAll(async {it.tween(it::rotation[270.degrees], time = 4.seconds, easing = Easing.EASE_IN_OUT)},
-                        async{it.moveTo(canX, height + buffer, 4.seconds, Easing.EASE_IN)})
-
-
-                    // 8 Seconds
-
-                }
-            }, async {
-                // Number
-                numberClusterThree.forEach {
-                    //  if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(7, 9)).seconds)
-                    fallingValueThree = (0..29).random()
-                    it.text = fallingValueThree.toString()
-                    numberThreeSwitch = true
-                    val canX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    it.visible = true
-                    it.position(canX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this)) {
-                            this.visible = false
-                            currentNumberUpdateThree()
-                            numberThreeSwitch = false
-
-                        }
-                    }
-
-                    awaitAll(async{it.moveTo(canX, height + buffer, 7.seconds, Easing.EASE_IN)})
-
-
-                    // 7 Seconds
-
-                }
-
-            })
-        }
-
-        suspend fun enemyWaveFour() {
-
-            println("DATA RUNNING")
-            awaitAll(async {
-                // Red Triangle Group 5
-                redTriangleGroupThirteen.forEach {
-                    // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(7, 8)).seconds)
-                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
-                    it.visible = true
-                    it.position(jellyX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
-
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
-
-                            explosion.visible = true
-                            this.visible = false
-
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                            println("enemy hits $enemyHits")
-                        }
-
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                        }
-
-                    }
-
-                    it.moveTo(jellyX + 75, 700.0, 3.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[maxDegrees], time = 1.seconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 3, height - 25, 1.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
-
-                    // 6.5 Seconds
-
-                }
-            }, async {
-                // Red Triangle Group 2
-                redTriangleGroupFourteen.forEach {
-                    // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(8, 10)).seconds)
-                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
-                    it.visible = true
-                    it.position(jellyX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
-
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
-
-                            explosion.visible = true
-                            this.visible = false
-
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                            println("enemy hits $enemyHits")
-                        }
-
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                        }
-
-                    }
-
-                    it.moveTo(jellyX + 75, 400.0, 3.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[maxDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 3, height - 73, 2.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
-
-                    // 7 Seconds
-
-                }
-            }, async {
-                // Red Triangle Group 3
-                redTriangleGroupFifteen.forEach {
-                    // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(9, 11)).seconds)
-                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
-                    it.visible = true
-                    it.position(jellyX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
-
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
-
-                            explosion.visible = true
-                            this.visible = false
-
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                            println("enemy hits $enemyHits")
-                        }
-
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                        }
-
-                    }
-
-                    it.moveTo(jellyX + 75, 300.0, 3.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[maxDegrees], time = 1.seconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 3, height - buffer, 1.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 30, height + buffer, 2.seconds, Easing.EASE_IN)
-
-                    // 7.5 Seconds
-
-                }
-            }, async {
-                // Red Triangle Group 4
-                redTriangleGroupSixteen.forEach {
-                    // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(7, 10)).seconds)
-                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
-                    it.visible = true
-                    it.position(jellyX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
-
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
-
-                            explosion.visible = true
-                            this.visible = false
-
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                            println("enemy hits $enemyHits")
-                        }
-
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                        }
-
-                    }
-
-                    it.moveTo(jellyX + 75, 400.0, 3.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[maxDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 3, height - buffer, 2.seconds, Easing.EASE_IN)
-                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
-                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
-
-                    // 7 Seconds
-
-                }
-            }, async {
-                // Red Skull Group 1
-                redSkullGroupSeven.forEach {
-                    // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(9, 11)).seconds)
-                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
-                    it.visible = true
-                    it.position(jellyX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
-
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
-
-                            explosion.visible = true
-                            this.visible = false
-
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                            println("enemy hits $enemyHits")
-                        }
-
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                        }
-
-                    }
-
-                    it.moveTo(jellyX + 75, 400.0, 3.seconds, Easing.EASE_IN)
-                    it.moveTo(jellyX + 3, height - 73, 2.seconds, Easing.EASE_IN)
-                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
-
-                    // 6 Seconds
-
-                }
-            }, async {
-                // Red Skull Group 2
-                redSkullGroupEight.forEach {
-                    // if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(8, 10)).seconds)
-                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    enemySwitch = true
-                    it.visible = true
-                    it.position(jellyX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this) && enemySwitch) {
-
-                            var collisionPosX = neonTarget.x - 60
-                            var collisionPosY = neonTarget.y - 70
-                            explosion.xy(collisionPosX, collisionPosY)
-                            println(collisionPosY)
-                            enemyHit()
-                            enemySwitch = false
-
-                            explosion.visible = true
-                            this.visible = false
-
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                            println("enemy hits $enemyHits")
-                        }
-
-                        else if (laserOne.collidesWith(this)) {
-                            this.visible = false
-                            enemySwitch = false
-                            explosion.xy(this.x - 50, this.y - 50)
-                            explosion.visible = true
-                            explosion.playAnimationForDuration(2.seconds)
-                            explosion.onAnimationCompleted { explosion.visible = false}
-
-                        }
-
-                    }
-
-                    it.moveTo(jellyX + 75, 400.0, 2.seconds, Easing.EASE_IN)
-                    it.moveTo(jellyX + 3, height - 73, 3.seconds, Easing.EASE_IN)
-                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
-
-                    // 6 Seconds
-
-                }
-            }, async {
-                // Chip Cluster
-                chipClusterFour.forEach {
-                    //  if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(9, 10)).seconds)
-                    chipSwitch = true
-                    val canX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    it.visible = true
-                    it.position(canX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this)) {
-                            this.visible = false
-                            chipSwitchHit()
-                            chipSwitch = false
-
-                            // colorDefault = AnsiEscape.Color.RED
-                            println("chip pick-ups: $chipPickUps")
-                        }
-                    }
-
-                    awaitAll(async {it.tween(it::rotation[270.degrees], time = 4.seconds, easing = Easing.EASE_IN_OUT)},
-                        async{it.moveTo(canX, height + buffer, 4.seconds, Easing.EASE_IN)})
-
-
-                    // 8 Seconds
-
-                }
-            }, async {
-                // Number
-                numberClusterFour.forEach {
-                    //  if (!it.visible || it.pos.y > height) {
-                    delay((Random.nextInt(7, 8)).seconds)
-                    fallingValueFour = (0..29).random()
-                    it.text = fallingValueFour.toString()
-                    numberFourSwitch = true
-                    val canX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
-                    it.visible = true
-                    it.position(canX, -5.0)
-
-                    it.addUpdater {
-                        if (neonTarget.collidesWith(this)) {
-                            this.visible = false
-                            currentNumberUpdateFour()
-                            numberFourSwitch = false
-
-                        }
-                    }
-
-                    awaitAll(async{it.moveTo(canX, height + buffer, 7.seconds, Easing.EASE_IN)})
-
-
-                    // 7 Seconds
-
-                }
-
-            })
-        }
+//        suspend fun enemyWaveTwo() {
+//
+//            println("DATA RUNNING")
+//            awaitAll(async {
+//                // Red Triangle Group 5
+//                redTriangleGroupFive.forEach {
+//                    // if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(3, 5)).seconds)
+//                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    enemySwitch = true
+//                    it.visible = true
+//                    it.position(jellyX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this) && enemySwitch) {
+//
+//                            var collisionPosX = neonTarget.x - 60
+//                            var collisionPosY = neonTarget.y - 70
+//                            explosion.xy(collisionPosX, collisionPosY)
+//                            println(collisionPosY)
+//                            enemyHit()
+//                            enemySwitch = false
+//
+//                            explosion.visible = true
+//                            this.visible = false
+//
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                            println("enemy hits $enemyHits")
+//                        }
+//
+//                        else if (laserOne.collidesWith(this)) {
+//                            this.visible = false
+//                            enemySwitch = false
+//                            explosion.xy(this.x - 50, this.y - 50)
+//                            explosion.visible = true
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                        }
+//
+//                    }
+//
+//                    it.moveTo(jellyX + 75, 700.0, 2.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[maxDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 3, height - 25, 3.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
+//
+//                    // 7 Seconds
+//
+//                }
+//            }, async {
+//                // Red Triangle Group 2
+//                redTriangleGroupSix.forEach {
+//                    // if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(4, 6)).seconds)
+//                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    enemySwitch = true
+//                    it.visible = true
+//                    it.position(jellyX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this) && enemySwitch) {
+//
+//                            var collisionPosX = neonTarget.x - 60
+//                            var collisionPosY = neonTarget.y - 70
+//                            explosion.xy(collisionPosX, collisionPosY)
+//                            println(collisionPosY)
+//                            enemyHit()
+//                            enemySwitch = false
+//
+//                            explosion.visible = true
+//                            this.visible = false
+//
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                            println("enemy hits $enemyHits")
+//                        }
+//
+//                        else if (laserOne.collidesWith(this)) {
+//                            this.visible = false
+//                            enemySwitch = false
+//                            explosion.xy(this.x - 50, this.y - 50)
+//                            explosion.visible = true
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                        }
+//
+//                    }
+//
+//                    it.moveTo(jellyX + 75, 400.0, 2.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[maxDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 3, height - 73, 3.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
+//
+//                    // 7 Seconds
+//
+//                }
+//            }, async {
+//                // Red Triangle Group 3
+//                redTriangleGroupSeven.forEach {
+//                    // if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(5, 7)).seconds)
+//                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    enemySwitch = true
+//                    it.visible = true
+//                    it.position(jellyX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this) && enemySwitch) {
+//
+//                            var collisionPosX = neonTarget.x - 60
+//                            var collisionPosY = neonTarget.y - 70
+//                            explosion.xy(collisionPosX, collisionPosY)
+//                            println(collisionPosY)
+//                            enemyHit()
+//                            enemySwitch = false
+//
+//                            explosion.visible = true
+//                            this.visible = false
+//
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                            println("enemy hits $enemyHits")
+//                        }
+//
+//                        else if (laserOne.collidesWith(this)) {
+//                            this.visible = false
+//                            enemySwitch = false
+//                            explosion.xy(this.x - 50, this.y - 50)
+//                            explosion.visible = true
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                        }
+//
+//                    }
+//
+//                    it.moveTo(jellyX + 75, 300.0, 2.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[maxDegrees], time = 1.seconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 3, height - buffer, 2.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
+//
+//                    // 6.5 Seconds
+//
+//                }
+//            }, async {
+//                // Red Triangle Group 4
+//                redTriangleGroupEight.forEach {
+//                    // if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(4, 7)).seconds)
+//                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    enemySwitch = true
+//                    it.visible = true
+//                    it.position(jellyX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this) && enemySwitch) {
+//
+//                            var collisionPosX = neonTarget.x - 60
+//                            var collisionPosY = neonTarget.y - 70
+//                            explosion.xy(collisionPosX, collisionPosY)
+//                            println(collisionPosY)
+//                            enemyHit()
+//                            enemySwitch = false
+//
+//                            explosion.visible = true
+//                            this.visible = false
+//
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                            println("enemy hits $enemyHits")
+//                        }
+//
+//                        else if (laserOne.collidesWith(this)) {
+//                            this.visible = false
+//                            enemySwitch = false
+//                            explosion.xy(this.x - 50, this.y - 50)
+//                            explosion.visible = true
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                        }
+//
+//                    }
+//
+//                    it.moveTo(jellyX + 75, 400.0, 2.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[maxDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 3, height - buffer, 3.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 30, height + buffer, 2.seconds, Easing.EASE_IN)
+//
+//                    // 8 Seconds
+//
+//                }
+//            }, async {
+//                // Red Skull Group 1
+//                redSkullGroupThree.forEach {
+//                    // if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(5, 6)).seconds)
+//                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    enemySwitch = true
+//                    it.visible = true
+//                    it.position(jellyX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this) && enemySwitch) {
+//
+//                            var collisionPosX = neonTarget.x - 60
+//                            var collisionPosY = neonTarget.y - 70
+//                            explosion.xy(collisionPosX, collisionPosY)
+//                            println(collisionPosY)
+//                            enemyHit()
+//                            enemySwitch = false
+//
+//                            explosion.visible = true
+//                            this.visible = false
+//
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                            println("enemy hits $enemyHits")
+//                        }
+//
+//                        else if (laserOne.collidesWith(this)) {
+//                            this.visible = false
+//                            enemySwitch = false
+//                            explosion.xy(this.x - 50, this.y - 50)
+//                            explosion.visible = true
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                        }
+//
+//                    }
+//
+//                    it.moveTo(jellyX + 75, 400.0, 2.seconds, Easing.EASE_IN)
+//                    it.moveTo(jellyX + 3, height - 73, 1.seconds, Easing.EASE_IN)
+//                    it.moveTo(jellyX + 30, height + buffer, 2.seconds, Easing.EASE_IN)
+//
+//                    // 5 Seconds
+//
+//                }
+//            }, async {
+//                // Red Skull Group 2
+//                redSkullGroupFour.forEach {
+//                    // if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(4, 7)).seconds)
+//                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    enemySwitch = true
+//                    it.visible = true
+//                    it.position(jellyX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this) && enemySwitch) {
+//
+//                            var collisionPosX = neonTarget.x - 60
+//                            var collisionPosY = neonTarget.y - 70
+//                            explosion.xy(collisionPosX, collisionPosY)
+//                            println(collisionPosY)
+//                            enemyHit()
+//                            enemySwitch = false
+//
+//                            explosion.visible = true
+//                            this.visible = false
+//
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                            println("enemy hits $enemyHits")
+//                        }
+//
+//                        else if (laserOne.collidesWith(this)) {
+//                            this.visible = false
+//                            enemySwitch = false
+//                            explosion.xy(this.x - 50, this.y - 50)
+//                            explosion.visible = true
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                        }
+//
+//                    }
+//
+//                    it.moveTo(jellyX + 75, 400.0, 3.seconds, Easing.EASE_IN)
+//                    it.moveTo(jellyX + 3, height - 73, 2.seconds, Easing.EASE_IN)
+//                    it.moveTo(jellyX + 30, height + buffer, 3.seconds, Easing.EASE_IN)
+//
+//                    // 8 Seconds
+//
+//                }
+//            }, async {
+//                // Chip Cluster
+//                chipClusterTwo.forEach {
+//                    //  if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(3, 6)).seconds)
+//                    chipSwitch = true
+//                    val canX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    it.visible = true
+//                    it.position(canX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this)) {
+//                            this.visible = false
+//                            chipSwitchHit()
+//                            chipSwitch = false
+//
+//                            // colorDefault = AnsiEscape.Color.RED
+//                            println("chip pick-ups: $chipPickUps")
+//                        }
+//                    }
+//
+//                    awaitAll(async {it.tween(it::rotation[270.degrees], time = 2.seconds, easing = Easing.EASE_IN_OUT)},
+//                        async{it.moveTo(canX, height + buffer, 5.seconds, Easing.EASE_IN)})
+//
+//
+//                    // 7 Seconds
+//
+//                }
+//            }, async {
+//                // Number
+//                numberClusterTwo.forEach {
+//                    //  if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(4, 6)).seconds)
+//                    fallingValueTwo = (0..29).random()
+//                    it.text = fallingValueTwo.toString()
+//                    numberTwoSwitch = true
+//                    val canX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    it.visible = true
+//                    it.position(canX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this)) {
+//                            this.visible = false
+//                            currentNumberUpdateTwo()
+//                            numberTwoSwitch = false
+//
+//                        }
+//                    }
+//
+//                    awaitAll(async{it.moveTo(canX, height + buffer, 8.seconds, Easing.EASE_IN)})
+//
+//
+//                    // 8 Seconds
+//
+//                }
+//
+//            })
+//        }
+
+//        suspend fun enemyWaveThree() {
+//
+//            println("DATA RUNNING")
+//            awaitAll(async {
+//                // Red Triangle Group 5
+//                redTriangleGroupNine.forEach {
+//                    // if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(5, 8)).seconds)
+//                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    enemySwitch = true
+//                    it.visible = true
+//                    it.position(jellyX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this) && enemySwitch) {
+//
+//                            var collisionPosX = neonTarget.x - 60
+//                            var collisionPosY = neonTarget.y - 70
+//                            explosion.xy(collisionPosX, collisionPosY)
+//                            println(collisionPosY)
+//                            enemyHit()
+//                            enemySwitch = false
+//
+//                            explosion.visible = true
+//                            this.visible = false
+//
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                            println("enemy hits $enemyHits")
+//                        }
+//
+//                        else if (laserOne.collidesWith(this)) {
+//                            this.visible = false
+//                            enemySwitch = false
+//                            explosion.xy(this.x - 50, this.y - 50)
+//                            explosion.visible = true
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                        }
+//
+//                    }
+//
+//                    it.moveTo(jellyX + 75, 700.0, 3.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[maxDegrees], time = 1.seconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 3, height - 25, 1.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
+//
+//                    // 6.5 Seconds
+//
+//                }
+//            }, async {
+//                // Red Triangle Group 2
+//                redTriangleGroupTen.forEach {
+//                    // if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(7, 9)).seconds)
+//                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    enemySwitch = true
+//                    it.visible = true
+//                    it.position(jellyX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this) && enemySwitch) {
+//
+//                            var collisionPosX = neonTarget.x - 60
+//                            var collisionPosY = neonTarget.y - 70
+//                            explosion.xy(collisionPosX, collisionPosY)
+//                            println(collisionPosY)
+//                            enemyHit()
+//                            enemySwitch = false
+//
+//                            explosion.visible = true
+//                            this.visible = false
+//
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                            println("enemy hits $enemyHits")
+//                        }
+//
+//                        else if (laserOne.collidesWith(this)) {
+//                            this.visible = false
+//                            enemySwitch = false
+//                            explosion.xy(this.x - 50, this.y - 50)
+//                            explosion.visible = true
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                        }
+//
+//                    }
+//
+//                    it.moveTo(jellyX + 75, 400.0, 3.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[maxDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 3, height - 73, 2.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
+//
+//                    // 7 Seconds
+//
+//                }
+//            }, async {
+//                // Red Triangle Group 3
+//                redTriangleGroupEleven.forEach {
+//                    // if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(8, 9)).seconds)
+//                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    enemySwitch = true
+//                    it.visible = true
+//                    it.position(jellyX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this) && enemySwitch) {
+//
+//                            var collisionPosX = neonTarget.x - 60
+//                            var collisionPosY = neonTarget.y - 70
+//                            explosion.xy(collisionPosX, collisionPosY)
+//                            println(collisionPosY)
+//                            enemyHit()
+//                            enemySwitch = false
+//
+//                            explosion.visible = true
+//                            this.visible = false
+//
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                            println("enemy hits $enemyHits")
+//                        }
+//
+//                        else if (laserOne.collidesWith(this)) {
+//                            this.visible = false
+//                            enemySwitch = false
+//                            explosion.xy(this.x - 50, this.y - 50)
+//                            explosion.visible = true
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                        }
+//
+//                    }
+//
+//                    it.moveTo(jellyX + 75, 300.0, 3.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[maxDegrees], time = 1.seconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 3, height - buffer, 1.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 30, height + buffer, 2.seconds, Easing.EASE_IN)
+//
+//                    // 7.5 Seconds
+//
+//                }
+//            }, async {
+//                // Red Triangle Group 4
+//                redTriangleGroupTwelve.forEach {
+//                    // if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(5, 7)).seconds)
+//                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    enemySwitch = true
+//                    it.visible = true
+//                    it.position(jellyX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this) && enemySwitch) {
+//
+//                            var collisionPosX = neonTarget.x - 60
+//                            var collisionPosY = neonTarget.y - 70
+//                            explosion.xy(collisionPosX, collisionPosY)
+//                            println(collisionPosY)
+//                            enemyHit()
+//                            enemySwitch = false
+//
+//                            explosion.visible = true
+//                            this.visible = false
+//
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                            println("enemy hits $enemyHits")
+//                        }
+//
+//                        else if (laserOne.collidesWith(this)) {
+//                            this.visible = false
+//                            enemySwitch = false
+//                            explosion.xy(this.x - 50, this.y - 50)
+//                            explosion.visible = true
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                        }
+//
+//                    }
+//
+//                    it.moveTo(jellyX + 75, 400.0, 3.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[maxDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 3, height - buffer, 2.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
+//
+//                    // 7 Seconds
+//
+//                }
+//            }, async {
+//                // Red Skull Group 1
+//                redSkullGroupFive.forEach {
+//                    // if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(7, 8)).seconds)
+//                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    enemySwitch = true
+//                    it.visible = true
+//                    it.position(jellyX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this) && enemySwitch) {
+//
+//                            var collisionPosX = neonTarget.x - 60
+//                            var collisionPosY = neonTarget.y - 70
+//                            explosion.xy(collisionPosX, collisionPosY)
+//                            println(collisionPosY)
+//                            enemyHit()
+//                            enemySwitch = false
+//
+//                            explosion.visible = true
+//                            this.visible = false
+//
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                            println("enemy hits $enemyHits")
+//                        }
+//
+//                        else if (laserOne.collidesWith(this)) {
+//                            this.visible = false
+//                            enemySwitch = false
+//                            explosion.xy(this.x - 50, this.y - 50)
+//                            explosion.visible = true
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                        }
+//
+//                    }
+//
+//                    it.moveTo(jellyX + 75, 400.0, 3.seconds, Easing.EASE_IN)
+//                    it.moveTo(jellyX + 3, height - 73, 2.seconds, Easing.EASE_IN)
+//                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
+//
+//                    // 6 Seconds
+//
+//                }
+//            }, async {
+//                // Red Skull Group 2
+//                redSkullGroupSix.forEach {
+//                    // if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(5, 9)).seconds)
+//                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    enemySwitch = true
+//                    it.visible = true
+//                    it.position(jellyX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this) && enemySwitch) {
+//
+//                            var collisionPosX = neonTarget.x - 60
+//                            var collisionPosY = neonTarget.y - 70
+//                            explosion.xy(collisionPosX, collisionPosY)
+//                            println(collisionPosY)
+//                            enemyHit()
+//                            enemySwitch = false
+//
+//                            explosion.visible = true
+//                            this.visible = false
+//
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                            println("enemy hits $enemyHits")
+//                        }
+//
+//                        else if (laserOne.collidesWith(this)) {
+//                            this.visible = false
+//                            enemySwitch = false
+//                            explosion.xy(this.x - 50, this.y - 50)
+//                            explosion.visible = true
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                        }
+//
+//                    }
+//
+//                    it.moveTo(jellyX + 75, 400.0, 2.seconds, Easing.EASE_IN)
+//                    it.moveTo(jellyX + 3, height - 73, 3.seconds, Easing.EASE_IN)
+//                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
+//
+//                    // 6 Seconds
+//
+//                }
+//            }, async {
+//                // Chip Cluster
+//                chipClusterThree.forEach {
+//                    //  if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(6, 8)).seconds)
+//                    chipSwitch = true
+//                    val canX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    it.visible = true
+//                    it.position(canX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this)) {
+//                            this.visible = false
+//                            chipSwitchHit()
+//                            chipSwitch = false
+//
+//                            // colorDefault = AnsiEscape.Color.RED
+//                            println("chip pick-ups: $chipPickUps")
+//                        }
+//                    }
+//
+//                    awaitAll(async {it.tween(it::rotation[270.degrees], time = 4.seconds, easing = Easing.EASE_IN_OUT)},
+//                        async{it.moveTo(canX, height + buffer, 4.seconds, Easing.EASE_IN)})
+//
+//
+//                    // 8 Seconds
+//
+//                }
+//            }, async {
+//                // Number
+//                numberClusterThree.forEach {
+//                    //  if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(7, 9)).seconds)
+//                    fallingValueThree = (0..29).random()
+//                    it.text = fallingValueThree.toString()
+//                    numberThreeSwitch = true
+//                    val canX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    it.visible = true
+//                    it.position(canX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this)) {
+//                            this.visible = false
+//                            currentNumberUpdateThree()
+//                            numberThreeSwitch = false
+//
+//                        }
+//                    }
+//
+//                    awaitAll(async{it.moveTo(canX, height + buffer, 7.seconds, Easing.EASE_IN)})
+//
+//
+//                    // 7 Seconds
+//
+//                }
+//
+//            })
+//        }
+
+//        suspend fun enemyWaveFour() {
+//
+//            println("DATA RUNNING")
+//            awaitAll(async {
+//                // Red Triangle Group 5
+//                redTriangleGroupThirteen.forEach {
+//                    // if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(7, 8)).seconds)
+//                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    enemySwitch = true
+//                    it.visible = true
+//                    it.position(jellyX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this) && enemySwitch) {
+//
+//                            var collisionPosX = neonTarget.x - 60
+//                            var collisionPosY = neonTarget.y - 70
+//                            explosion.xy(collisionPosX, collisionPosY)
+//                            println(collisionPosY)
+//                            enemyHit()
+//                            enemySwitch = false
+//
+//                            explosion.visible = true
+//                            this.visible = false
+//
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                            println("enemy hits $enemyHits")
+//                        }
+//
+//                        else if (laserOne.collidesWith(this)) {
+//                            this.visible = false
+//                            enemySwitch = false
+//                            explosion.xy(this.x - 50, this.y - 50)
+//                            explosion.visible = true
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                        }
+//
+//                    }
+//
+//                    it.moveTo(jellyX + 75, 700.0, 3.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[maxDegrees], time = 1.seconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 3, height - 25, 1.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
+//
+//                    // 6.5 Seconds
+//
+//                }
+//            }, async {
+//                // Red Triangle Group 2
+//                redTriangleGroupFourteen.forEach {
+//                    // if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(8, 10)).seconds)
+//                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    enemySwitch = true
+//                    it.visible = true
+//                    it.position(jellyX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this) && enemySwitch) {
+//
+//                            var collisionPosX = neonTarget.x - 60
+//                            var collisionPosY = neonTarget.y - 70
+//                            explosion.xy(collisionPosX, collisionPosY)
+//                            println(collisionPosY)
+//                            enemyHit()
+//                            enemySwitch = false
+//
+//                            explosion.visible = true
+//                            this.visible = false
+//
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                            println("enemy hits $enemyHits")
+//                        }
+//
+//                        else if (laserOne.collidesWith(this)) {
+//                            this.visible = false
+//                            enemySwitch = false
+//                            explosion.xy(this.x - 50, this.y - 50)
+//                            explosion.visible = true
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                        }
+//
+//                    }
+//
+//                    it.moveTo(jellyX + 75, 400.0, 3.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[maxDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 3, height - 73, 2.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
+//
+//                    // 7 Seconds
+//
+//                }
+//            }, async {
+//                // Red Triangle Group 3
+//                redTriangleGroupFifteen.forEach {
+//                    // if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(9, 11)).seconds)
+//                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    enemySwitch = true
+//                    it.visible = true
+//                    it.position(jellyX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this) && enemySwitch) {
+//
+//                            var collisionPosX = neonTarget.x - 60
+//                            var collisionPosY = neonTarget.y - 70
+//                            explosion.xy(collisionPosX, collisionPosY)
+//                            println(collisionPosY)
+//                            enemyHit()
+//                            enemySwitch = false
+//
+//                            explosion.visible = true
+//                            this.visible = false
+//
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                            println("enemy hits $enemyHits")
+//                        }
+//
+//                        else if (laserOne.collidesWith(this)) {
+//                            this.visible = false
+//                            enemySwitch = false
+//                            explosion.xy(this.x - 50, this.y - 50)
+//                            explosion.visible = true
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                        }
+//
+//                    }
+//
+//                    it.moveTo(jellyX + 75, 300.0, 3.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[maxDegrees], time = 1.seconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 3, height - buffer, 1.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 30, height + buffer, 2.seconds, Easing.EASE_IN)
+//
+//                    // 7.5 Seconds
+//
+//                }
+//            }, async {
+//                // Red Triangle Group 4
+//                redTriangleGroupSixteen.forEach {
+//                    // if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(7, 10)).seconds)
+//                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    enemySwitch = true
+//                    it.visible = true
+//                    it.position(jellyX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this) && enemySwitch) {
+//
+//                            var collisionPosX = neonTarget.x - 60
+//                            var collisionPosY = neonTarget.y - 70
+//                            explosion.xy(collisionPosX, collisionPosY)
+//                            println(collisionPosY)
+//                            enemyHit()
+//                            enemySwitch = false
+//
+//                            explosion.visible = true
+//                            this.visible = false
+//
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                            println("enemy hits $enemyHits")
+//                        }
+//
+//                        else if (laserOne.collidesWith(this)) {
+//                            this.visible = false
+//                            enemySwitch = false
+//                            explosion.xy(this.x - 50, this.y - 50)
+//                            explosion.visible = true
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                        }
+//
+//                    }
+//
+//                    it.moveTo(jellyX + 75, 400.0, 3.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[maxDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 3, height - buffer, 2.seconds, Easing.EASE_IN)
+//                    it.tween(it::rotation[minDegrees], time = 500.milliseconds, easing = Easing.EASE_IN_OUT)
+//                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
+//
+//                    // 7 Seconds
+//
+//                }
+//            }, async {
+//                // Red Skull Group 1
+//                redSkullGroupSeven.forEach {
+//                    // if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(9, 11)).seconds)
+//                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    enemySwitch = true
+//                    it.visible = true
+//                    it.position(jellyX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this) && enemySwitch) {
+//
+//                            var collisionPosX = neonTarget.x - 60
+//                            var collisionPosY = neonTarget.y - 70
+//                            explosion.xy(collisionPosX, collisionPosY)
+//                            println(collisionPosY)
+//                            enemyHit()
+//                            enemySwitch = false
+//
+//                            explosion.visible = true
+//                            this.visible = false
+//
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                            println("enemy hits $enemyHits")
+//                        }
+//
+//                        else if (laserOne.collidesWith(this)) {
+//                            this.visible = false
+//                            enemySwitch = false
+//                            explosion.xy(this.x - 50, this.y - 50)
+//                            explosion.visible = true
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                        }
+//
+//                    }
+//
+//                    it.moveTo(jellyX + 75, 400.0, 3.seconds, Easing.EASE_IN)
+//                    it.moveTo(jellyX + 3, height - 73, 2.seconds, Easing.EASE_IN)
+//                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
+//
+//                    // 6 Seconds
+//
+//                }
+//            }, async {
+//                // Red Skull Group 2
+//                redSkullGroupEight.forEach {
+//                    // if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(8, 10)).seconds)
+//                    val jellyX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    enemySwitch = true
+//                    it.visible = true
+//                    it.position(jellyX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this) && enemySwitch) {
+//
+//                            var collisionPosX = neonTarget.x - 60
+//                            var collisionPosY = neonTarget.y - 70
+//                            explosion.xy(collisionPosX, collisionPosY)
+//                            println(collisionPosY)
+//                            enemyHit()
+//                            enemySwitch = false
+//
+//                            explosion.visible = true
+//                            this.visible = false
+//
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                            println("enemy hits $enemyHits")
+//                        }
+//
+//                        else if (laserOne.collidesWith(this)) {
+//                            this.visible = false
+//                            enemySwitch = false
+//                            explosion.xy(this.x - 50, this.y - 50)
+//                            explosion.visible = true
+//                            explosion.playAnimationForDuration(2.seconds)
+//                            explosion.onAnimationCompleted { explosion.visible = false}
+//
+//                        }
+//
+//                    }
+//
+//                    it.moveTo(jellyX + 75, 400.0, 2.seconds, Easing.EASE_IN)
+//                    it.moveTo(jellyX + 3, height - 73, 3.seconds, Easing.EASE_IN)
+//                    it.moveTo(jellyX + 30, height + buffer, 1.seconds, Easing.EASE_IN)
+//
+//                    // 6 Seconds
+//
+//                }
+//            }, async {
+//                // Chip Cluster
+//                chipClusterFour.forEach {
+//                    //  if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(9, 10)).seconds)
+//                    chipSwitch = true
+//                    val canX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    it.visible = true
+//                    it.position(canX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this)) {
+//                            this.visible = false
+//                            chipSwitchHit()
+//                            chipSwitch = false
+//
+//                            // colorDefault = AnsiEscape.Color.RED
+//                            println("chip pick-ups: $chipPickUps")
+//                        }
+//                    }
+//
+//                    awaitAll(async {it.tween(it::rotation[270.degrees], time = 4.seconds, easing = Easing.EASE_IN_OUT)},
+//                        async{it.moveTo(canX, height + buffer, 4.seconds, Easing.EASE_IN)})
+//
+//
+//                    // 8 Seconds
+//
+//                }
+//            }, async {
+//                // Number
+//                numberClusterFour.forEach {
+//                    //  if (!it.visible || it.pos.y > height) {
+//                    delay((Random.nextInt(7, 8)).seconds)
+//                    fallingValueFour = (0..29).random()
+//                    it.text = fallingValueFour.toString()
+//                    numberFourSwitch = true
+//                    val canX = Random.nextInt(buffer, (width.toInt() - buffer)).toDouble()
+//                    it.visible = true
+//                    it.position(canX, -5.0)
+//
+//                    it.addUpdater {
+//                        if (neonTarget.collidesWith(this)) {
+//                            this.visible = false
+//                            currentNumberUpdateFour()
+//                            numberFourSwitch = false
+//
+//                        }
+//                    }
+//
+//                    awaitAll(async{it.moveTo(canX, height + buffer, 7.seconds, Easing.EASE_IN)})
+//
+//
+//                    // 7 Seconds
+//
+//                }
+//
+//            })
+//        }
 
         suspend fun hackIncomplete() {
             println("Hack Incomplete")
@@ -2123,20 +2127,16 @@ class Scene2() : Scene() {
                     // if (!it.visible || it.pos.y > height) {
                     delay((Random.nextInt(13, 14)).seconds)
                     waveMessage.visible = true
-                    waveMessage.moveTo(rect.width / 2, height + 5, 5.seconds, Easing.LINEAR)
+                    waveMessage.moveTo(rect.width / 2, height + 5, 7.seconds, Easing.EASE_IN_OUT)
                     waveMessage.visible = false
                     waveMessage.pos = (IPoint.invoke((rect.width / 2), 28.0))
 
-
-
-                    // 6.5 Seconds
-
-
+                        // 5 seconds
             })
         }
 
 
-        // add a "hack incomplete; incoming wave" message at end of each wave
+        // add a "hack incomplete; incoming wave" message at end of each wave XX Done, but timings need to be adjusted
 
         suspend fun enemyWaveRunner() {
             while (levelIsActive) {
@@ -2145,9 +2145,9 @@ class Scene2() : Scene() {
                     async {
                         energyBall.tween(energyBall::rotation[minDegrees], time = 7.seconds, easing = Easing.EASE_IN_OUT)
                         energyBall.tween(energyBall::rotation[maxDegrees], time = 6.seconds, easing = Easing.EASE_IN_OUT) },
-                    async { enemyWaveTwo() },
-                    async { enemyWaveThree() },
-                    async { enemyWaveFour() },
+//                    async { enemyWaveTwo() },
+//                    async { enemyWaveThree() },
+//                    async { enemyWaveFour() },
                     async { hackIncomplete() },
                     async {
                         neonTarget.tween(neonTarget::rotation[minDegrees], time = 6.seconds, easing = Easing.EASE_IN_OUT)
